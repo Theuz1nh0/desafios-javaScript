@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/style.css">
+    <title>Document</title>
+</head>
+
+<body class="flex flex-center">
+    <div class="size-calculator">
+        <header class="main-fixed-width">
+            <div class="options" id="options"></div>
+            <input class="input input-number" id="result" type="text" autofocus>
+            <div id="preResult"></div>
+        </header>
+        <main class="main-fixed-width">
+            <div class="grid">
+                <div class="row">
+                    <div>
+                        <button class="button bg-AC" onclick="calcular('action', 'AC')">AC</button>
+                    </div>
+                    <div>
+                        <button class="button bg-operators" onclick="calcular('action', '()')">( )</button>
+                    </div>
+                    <div>
+                        <button class="button bg-operators" onclick="calcular('action', '%')">
+                            <i class="fa-solid fa-percent"></i>
+                        </button>
+                    </div>
+                    <div>
+                        <button class="button bg-operators" onclick="calcular('action', '/')">
+                            <i class="fa-solid fa-divide"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <button class="button" onclick="calcular('value', '7')">7</button>
+                    </div>
+                    <div>
+                        <button class="button" onclick="calcular('value', '8')">8</button>
+                    </div>
+                    <div>
+                        <button class="button" onclick="calcular('value', '9')">9</button>
+                    </div>
+                    <div>
+                        <button class="button bg-operators" onclick="calcular('action', 'x')">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <button class="button" onclick="calcular('value', '4')">4</button>
+                    </div>
+                    <div>
+                        <button class="button" onclick="calcular('value', '5')">5</button>
+                    </div>
+                    <div>
+                        <button class="button" onclick="calcular('value', '6')">6</button>
+                    </div>
+                    <div>
+                        <button class="button bg-operators"  onclick="calcular('action', '-')">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <button class="button" onclick="calcular('value', '1')">1</button>
+                    </div>
+                    <div>
+                        <button class="button" onclick="calcular('value', '2')">2</button>
+                    </div>
+                    <div>
+                        <button class="button" onclick="calcular('value', '3')">3</button>
+                    </div>
+                    <div>
+                        <button class="button bg-operators" onclick="calcular('action', '+')">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <button class="button" onclick="calcular('value', '0')">0</button>
+                    </div>
+                    <div>
+                        <button class="button" onclick="calcular('action', '.')">,</button>
+                    </div>
+                    <div>
+                        <button class="button" onclick="calcular('action', 'C-one')">
+                            <i class="fa-solid fa-delete-left"></i>
+                        </button>
+                    </div>
+                    <div>
+                        <button class="button bg-operators" onclick="calcular('action', '=')">
+                            <i class="fa-solid fa-equals"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://kit.fontawesome.com/202d169232.js" crossorigin="anonymous"></script>
+    <script src="./assets/script.js"></script>
+</body>
+
+</html>
