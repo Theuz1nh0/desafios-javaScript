@@ -61,54 +61,65 @@ function calcular(tipe, value) {
 
 
     if (tipe === 'action') {
-        // checks if the last string is a mathematical operator
-        switch (lastValue) {
-            case 'x':
-            case '-':
-            case '+':
-            case '/':
-            case '%':
-                // check if the last string is equal to the button clicked
-                if (lastValue === value) {
-                    return;
-                }
+        const clear = value === 'AC';
+        const operators = value === 'x' || value === '-' || value === '+' || value === '/' || value === '%';
+        const lastOperator = lastValue === 'x' || lastValue === '-' || lastValue === '+' || lastValue === '/' || lastValue === '%';
+        const sameValue = lastValue === value;
+        const calcResult = value === '=';
 
-                // checks if the clicked value is a mathematical operator
-                switch (value) {
-                    case 'AC':
+        switch (true) {
+            // checks if the last string is a mathematical operator
+            case lastOperator:
+                switch (true) {
+                    // if same math operator, focus on input and return without change the input value
+                    case sameValue:
+                        input.focus();
+                        break;
+
+                    // clear the input
+                    case clear:
                         input.value = '';
                         break;
-                    case 'x':
-                    case '-':
-                    case '+':
-                    case '/':
-                    case '%':
-                        // if it is a mathematical operator, replace the last string with that value
+
+                    // if it is a mathematical operator, replace the last string with that value
+                    case operators:
                         input.value = input.value.slice(0, -1) + value;
                         break;
                 }
                 break;
-            default:
-                // if the last string is not a mathematical operator, add the button clicked
-                switch (value) {
-                    case 'AC':
-                        input.value = '';
-                        break;
-                    case 'x':
-                    case '-':
-                    case '+':
-                    case '/':
-                    case '%':
-                        input.value += value;
-                        break;
-                }
-        }
 
+            // clear the input
+            case clear:
+                input.value = '';
+                break;
+
+            // add a operator
+            case operators:
+                input.value += value;
+                break;
+
+            // calc the expression result
+            case calcResult:
+                // make a copy of input value to change some operators
+                // stores the values ​​that need to be modified in an array
+                // executes the mathExp function and returns its value to the copyInput variable
+                let copyInput = input.value;
+                const toTransform = ['%', 'x'];
+                copyInput = mathExp(copyInput, toTransform);
+
+                // transform the string expression into a JS expression and resolve it
+                let result = eval(copyInput);
+                result = result % 1 === 0 ? result : result.toFixed(2);
+
+                input.value = result;
+                break;
+        }
 
     }
 
     if (tipe === 'value') {
 
+        // checks if the button pressed is a number and adds the value to the input
         switch (value) {
             case '0':
             case '1':
@@ -125,6 +136,25 @@ function calcular(tipe, value) {
         }
     }
 
+    // to keep focus on input
+    input.focus();
     return;
 }
 
+// change some operators to a validated JS operator
+function mathExp(value, arrayOperators) {
+    arrayOperators.forEach(e => {
+        const re = RegExp(e, 'gi')
+
+        switch (e) {
+            case '%':
+                value = value.replace(re, `/100*`);
+                break;
+            case 'x':
+                value = value.replace(re, '*');
+                break;
+        }
+    });
+
+    return value;
+}

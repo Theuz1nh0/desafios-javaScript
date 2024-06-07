@@ -96,7 +96,3 @@ main {
 .input-number::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
-
-.input-number {
-    -moz-appearance: textfield;
-}
