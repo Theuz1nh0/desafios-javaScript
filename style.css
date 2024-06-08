@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    padding: 2em;
+}
+
+
+.projects-container {
+    display: flex;
+    gap: 2em;
+}
+
+.project {
+    border: 1px solid black;
+    padding: .5em 2em;
+    border-radius: 1em;
+    box-shadow: 5px 5px;
+}
+
+.projects-container a{
+    text-decoration: none;
+    color: black;
+}
+
+.project:hover {
+    transform: scale(1.1);
+    background: lightcyan;
+    box-shadow: 2px 2px rgb(236, 255, 255) inset, 5px 5px;
+}
